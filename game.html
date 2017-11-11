@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Project-1</title>
+</head>
+<body>
+
+    <form action="" method="post">
+        <div>Select your hair color:</div>
+        <input type="checkbox" name="favorite1" value="Blonde" class="box1" /> Blonde
+        <input type="checkbox" name="favorite2" value="Black" class="box1" /> Black
+        <input type="checkbox" name="favorite3" value="Ginger" class="box1" /> Ginger
+    </form>
+    <br>
+    <form action="" method="post">
+        <div>Select your ethnicity:</div>
+        <input type="checkbox" name="favorite1" value="White" class="box2" /> White
+        <input type="checkbox" name="favorite2" value="Not White" class="box2" /> Not White
+        <input type="checkbox" name="favorite3" value="Asian" class="box2" /> Asian
+    </form>
+    <br>
+    <form action="" method="post">
+        <div>Select your gender:</div>
+        <input type="checkbox" name="favorite1" value="Female" class="box3" /> Female
+        <input type="checkbox" name="favorite2" value="Male" class="box3" /> Male
+        <input type="checkbox" name="favorite2" value="Unknown" class="box3" /> Unknown
+    </form>
+    
+
+    <script>
+        
+        // Create object to hold character traits
+        // Gender, race, Hair color 
+        // Create second object to hold randomly generated character traits 
+
+        var hair = ["black", "blonde", "ginger"];
+        var ethnicity = ["white", "not white", "asian",];
+        var sex = ["female", "male",];
+
+        var user = {
+            hairColor: $(".box1").val(),
+            race: $(".box2").val(),
+            gender: $(".box3").val(),
+        };
+
+        console.log(user);
+
+        // Create random generater to select one trait from each array to create a new object
+        // Store random traits in randomUser
+
+        var randomUser = {
+            hairColor: "",
+            race: "",
+            gender: "",
+        };
+
+        var rand1 = hair[Math.floor(Math.random() * hair.length)];
+        var rand2 = ethnicity[Math.floor(Math.random() * ethnicity.length)];
+        var rand3 = sex[Math.floor(Math.random() * sex.length)];
+        var randomUser = "Hair color: " + rand1 + " Ethnicity: " + rand2 + " Gender: " + rand3;
+        console.log(randomUser);
+
+    </script>
+    
+</body>
+</html>
