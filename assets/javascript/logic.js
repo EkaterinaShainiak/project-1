@@ -18,6 +18,20 @@ function checkRollSuccess(minimum, roll) {
     return roll >= minimim;
 }
 
+var statusBar = {
+    health:100,
+    gender: "male",
+    hairColor: "yellow",
+    ethnicity: "white"
+}
+
+function createStatusBar(){
+    $("#stat-health").text("HP: "+statusBar.health);
+    $("#stat-gender").text("Gender: "+statusBar.gender);
+    $("#stat-hairC").text("Hair Color: "+statusBar.hairColor);
+    $("stat-ethnicity").text("Ethnicity: "+statusBar.ethnicity);
+}
+
 $(document).on("click", "#choice1", function () {
 
 
