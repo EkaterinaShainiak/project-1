@@ -1,0 +1,27 @@
+
+body    {
+    background-color: lightslategray;
+    font-family: 'Roboto', sans-serif;
+}
+
+img {
+    width: 85%;
+    height: 85%;
+}
+
+.jumbotron  {
+    background-color: white;
+}
+
+.mainContainer  {
+    background-color: white;
+    padding: 5%;
+}
+
+.content    {
+    border: 1px solid gray;
+    background-color: black;
+    color: white;
+    margin: 1%;
+    padding: 1%;
+}
