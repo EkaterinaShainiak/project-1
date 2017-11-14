@@ -18,6 +18,7 @@ var character = {
     hairColor: "",
     ethnicityChosen: "",
     genderChosen: "",
+    name: "",
 };
 
 var highschool = [{
@@ -33,6 +34,7 @@ var nar1_5 = "This is what we want to narrate to player";
 var hairChosen;
 var ethnicityChosen;
 var genderChosen;
+var userName;
 
 var game = {
 
@@ -42,6 +44,7 @@ var game = {
         $("#h1tag").html("Phase 1");
         $("#ptag").html("Select your character traits");
 
+
         for (var i = 0; i < characterQuestions.length; i++)  {
             panel.append("<h2>" + characterQuestions[i].question + "</h2>");
             for (var j = 0; j < characterQuestions[i].answers.length; j++)  {
@@ -49,6 +52,7 @@ var game = {
                  "' value='" + characterQuestions[i].answers[j] + "'>" + characterQuestions[i].answers[j]);
             }
         }
+        panel.append("<br>" + "Enter your name:" + "<br>" + "<input type='text' name='name' value='' id='name'>")
         panel.append("<br>" + "<button id='next'>Next</button>");
 
 
@@ -66,11 +70,16 @@ var game = {
             genderChosen = $("input[name=question-"+2+"]:checked").val();
 
             console.log(genderChosen);
+
+            userName = $("#name").val();
+
+            console.log(userName);
             
             character = {
                 hairColor: hairChosen,
                 ethnicityChosen: ethnicityChosen,
                 genderChosen: genderChosen,
+                name: userName,
             };
 
             console.log(character);
