@@ -7,6 +7,8 @@ var hsDropOutPercent;
 var cDropOutPercent;
 var workForcePercent;
 
+
+//API calls (utilizes server.js)
 var webURL = "http://localhost:3000/data";
 var queryURL = "http://localhost:3000/mbkHigh";
 var queryURL2 = "http://localhost:3000/mbkCollege";
@@ -70,7 +72,7 @@ $.ajax({
 
 
 
-
+//Game Logic 
 function roll100Die() {
     return Math.ceil(Math.random() * 100);
 }
@@ -89,16 +91,14 @@ function checkRollSuccess(minimum, roll) {
 
 var statusBar = {
     health:100,
-    gender: "male",
-    hairColor: "yellow",
-    ethnicity: "white"
+    profession: jobPosition,
+    location: "Irvine"
 }
 
 function createStatusBar(){
     $("#stat-health").text("HP: "+statusBar.health);
-    $("#stat-gender").text("Gender: "+statusBar.gender);
-    $("#stat-hairC").text("Hair Color: "+statusBar.hairColor);
-    $("stat-ethnicity").text("Ethnicity: "+statusBar.ethnicity);
+    $("#stat-profession").text("Profession: "+statusBar.profession);
+    $("#stat-location").text("Location: "+statusBar.location);
 }
 
 $(document).on("click", "#choice1", function () {
