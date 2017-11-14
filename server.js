@@ -21,13 +21,6 @@ app.get("/", function(req, res) {
   res.sendFile(path.join(__dirname, "game.html"));
 });
 
-app.get("/add", function(req, res) {
-  res.sendFile(path.join(__dirname, "add.html"));
-});
-
-app.get("/all", function(req, res) {
-  res.sendFile(path.join(__dirname, "all.html"));
-});
 
 app.get("/mbk", function(req,res){
     var response = axios.get("https://api.ed.gov/data/mbk-highschool-dropout?api_key=zTD7z8jkkfgQIkgXwcya3JHJ8ulInlpfaIsdGFga")

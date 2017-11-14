@@ -1,21 +1,37 @@
 $(document).on("click", "#hello", function () {
-   
-    var action = "&action=job-stats";
-    var city = "&city=Irvine";
-    var jobType = "&jobType=fulltime";
-    
+
+
     var webURL = "http://localhost:3000/data";
-       
-   
+    var queryURL = "http://localhost:3000/mbk";
+
     $.ajax({
         url: webURL,
         method: "GET"
     })
         .done(function (response) {
             var results = JSON.parse(response);
-            console.log(results);
+
+            var jobPosition = results.data.response.employers[Math.floor(Math.random()*10)].featuredReview.jobTitle;
+            console.log(jobPosition);
 
         })
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    })
+
+        .done(function (response) {
+            var results = JSON.parse(response);
+           
+            var dropOutPercent = parseInt(results.data.resources[Math.floor(Math.random()*20)].Percentage);
+            // storing the data from the AJAX request in the results variable
+            console.log(dropOutPercent);
+            
+        });
+
+
+
 
 
 })
