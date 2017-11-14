@@ -22,8 +22,54 @@ app.get("/", function(req, res) {
 });
 
 
-app.get("/mbk", function(req,res){
+app.get("/mbkHigh", function(req,res){
     var response = axios.get("https://api.ed.gov/data/mbk-highschool-dropout?api_key=zTD7z8jkkfgQIkgXwcya3JHJ8ulInlpfaIsdGFga")
+    .then(function(response){
+        console.log(response);
+        var cache = [];
+        var data = JSON.stringify(response, function(key, value) {
+            if (typeof value === 'object' && value !== null) {
+                if (cache.indexOf(value) !== -1) {
+                    // Circular reference found, discard key
+                    return;
+                }
+                // Store value in our collection
+                cache.push(value);
+            }
+            return value;
+        }); 
+        console.log(data);
+        res.send(data)
+    }).catch(function(error){
+        console.log(error);
+    });
+})
+
+app.get("/mbkCollege", function(req,res){
+    var response = axios.get("https://api.ed.gov/data/mbk-bachelors-or-higher?api_key=zTD7z8jkkfgQIkgXwcya3JHJ8ulInlpfaIsdGFga")
+    .then(function(response){
+        console.log(response);
+        var cache = [];
+        var data = JSON.stringify(response, function(key, value) {
+            if (typeof value === 'object' && value !== null) {
+                if (cache.indexOf(value) !== -1) {
+                    // Circular reference found, discard key
+                    return;
+                }
+                // Store value in our collection
+                cache.push(value);
+            }
+            return value;
+        }); 
+        console.log(data);
+        res.send(data)
+    }).catch(function(error){
+        console.log(error);
+    });
+})
+
+app.get("/mbkWork", function(req,res){
+    var response = axios.get("https://api.ed.gov/data/mbk-labor-force-participation?api_key=zTD7z8jkkfgQIkgXwcya3JHJ8ulInlpfaIsdGFga")
     .then(function(response){
         console.log(response);
         var cache = [];

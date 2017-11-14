@@ -3,8 +3,8 @@
         // Create second object to hold randomly generated character traits 
 
         var hair = ["black", "blonde", "ginger"];
-        var ethnicity = ["white", "not white", "asian",];
-        var sex = ["female", "male",];
+        var ethnicity = ["white", "not white", "asian"];
+        var sex = ["female", "male"];
 
         var user = {
             hairColor: $(".box1").val(),
