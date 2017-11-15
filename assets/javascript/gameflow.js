@@ -3,6 +3,7 @@
 var isChoice1Available = false;
 var isChoice2Available = false;
 var isChoice3Available = false;
+var isCharacterChosen = false;
 
 var jobPosition;
 var hsDropOutPercent;
@@ -45,7 +46,6 @@ var highschool = [{
 var hair;
 
 // Narration 
-var nar1_5 = "This is what we want to narrate to player";
 
 var hairColor;
 var ethnicityChosen;
@@ -113,7 +113,7 @@ var game = {
     phase1: function()   {
 
         $("button").remove();
-        $("#h1tag").html("Phase 1");
+        $("#h1tag").html("Creating Your Character!");
         $("#ptag").html("Select your character traits");
 
 
@@ -125,7 +125,7 @@ var game = {
             }
         }
         panel.append("<br>" + "Enter your name:" + "<br>" + "<input type='text' name='name' value='' id='name'>")
-        panel.append("<br>" + "<button id='next'>Next</button>");
+        panel.append("<br>" + "<button id='next1'>Next</button>");
 
         console.log("finished character creation");
 
@@ -139,85 +139,87 @@ var game = {
 
         $(".content").html("");
 
-        panel.append(nar1_5);
+        panel.append("This is "+character.name+". "+character.name+" is a very happy child. The only reason "+character.name+" looks like they are sad is because their dog just died. But that's besides the story.");
 
-        panel.append("<br>" + "<button id='next'>Next</button>");
+
+        panel.append("<br>" + "<button id='next2'>Next</button>");
+        
     },
 
     characterDisplay: function() {
         console.log(character);
         if (character.genderChosen = 'Male' && character.ethnicityChosen == 'White' && character.hairColor == 'Blonde') {
-            $(".content").append("<img src='Assets/Images/malewhiteblonde.png'>");    
+            $(".content").append("<img src='Images/malewhiteblonde.png'>");    
             console.log("append image");
         }
         else if (character.genderChosen = 'Male' && character.ethnicityChosen == 'White' && character.hairColor == 'Black') {
-            panel.append("<img src='Assets/Images/malewhiteblack.png'>");
+            panel.append("<img src='Images/malewhiteblack.png'>");
         }
         else if (character.genderChosen = 'Male' && character.ethnicityChosen == 'White' && character.hairColor == 'Ginger') {
-            panel.append("<img src='Assets/Images/malewhiteginger.png'>");
+            panel.append("<img src='Images/malewhiteginger.png'>");
         }
         else if (character.genderChosen = 'Male' && character.ethnicityChosen == 'Hispanic' && character.hairColor == 'Blonde') {
-            panel.append("<img src='Assets/Images/malehispanicblonde.png'>");
+            panel.append("<img src='Images/malehispanicblonde.png'>");
         }
         else if (character.genderChosen = 'Male' && character.ethnicityChosen == 'Hispanic' && character.hairColor == 'Black') {
-            panel.append("<img src='Assets/Images/malehispanicblack.png'>");
+            panel.append("<img src='Images/malehispanicblack.png'>");
         }
         else if (character.genderChosen = 'Male' && character.ethnicityChosen == 'Hispanic' && character.hairColor == 'Ginger') {
-            panel.append("<img src='Assets/Images/malehispanicginger.png'>");
+            panel.append("<img src='Images/malehispanicginger.png'>");
         }
         else if (character.genderChosen = 'Male' && character.ethnicityChosen == 'Asian' && character.hairColor == 'Blonde') {
-            panel.append("<img src='Assets/Images/maleasianblonde.png'>");
+            panel.append("<img src='Images/maleasianblonde.png'>");
         }
         else if (character.genderChosen = 'Male' && character.ethnicityChosen == 'Asian' && character.hairColor == 'Black') {
-            panel.append("<img src='Assets/Images/maleasianblack.png'>");
+            panel.append("<img src='Images/maleasianblack.png'>");
         }
         else if (character.genderChosen = 'Male' && character.ethnicityChosen == 'Asian' && character.hairColor == 'Ginger') {
-            panel.append("<img src='Assets/Images/maleasianginger.png'>");
+            panel.append("<img src='Images/maleasianginger.png'>");
         }
         else if (character.genderChosen = 'Male' && character.ethnicityChosen == 'Black' && character.hairColor == 'Blonde') {
-            panel.append("<img src='Assets/Images/maleblackblonde.png'>");
+            panel.append("<img src='Images/maleblackblonde.png'>");
         }
         else if (character.genderChosen = 'Male' && character.ethnicityChosen == 'Black' && character.hairColor == 'Black') {
-            panel.append("<img src='Assets/Images/maleblackblack.png'>");
+            panel.append("<img src='Images/maleblackblack.png'>");
         }
         else if (character.genderChosen = 'Male' && character.ethnicityChosen == 'Black' && character.hairColor == 'Ginger') {
-            panel.append("<img src='Assets/Images/maleblackginger.png'>");
+            panel.append("<img src='Images/maleblackginger.png'>");
         }
         else if (character.genderChosen = 'Female' && character.ethnicityChosen == 'White' && character.hairColor == 'Blonde') {
-            panel.append("<img src='Assets/Images/femalewhiteblonde.png'>");
+            panel.append("<img src='Images/femalewhiteblonde.png'>");
         }
         else if (character.genderChosen = 'Female' && character.ethnicityChosen == 'White' && character.hairColor == 'Black') {
-            panel.append("<img src='Assets/Images/femalewhiteblack.png'>");
+            panel.append("<img src='Images/femalewhiteblack.png'>");
         }
         else if (character.genderChosen = 'Female' && character.ethnicityChosen == 'White' && character.hairColor == 'Ginger') {
-            panel.append("<img src='Assets/Images/femalewhiteginger.png'>");
+            panel.append("<img src='Images/femalewhiteginger.png'>");
         }    
         else if (character.genderChosen = 'Female' && character.ethnicityChosen == 'Hispanic' && character.hairColor == 'Blonde') {
-            panel.append("<img src='Assets/Images/femalehispanicblonde.png'>");
+            panel.append("<img src='Images/femalehispanicblonde.png'>");
         }
         else if (character.genderChosen = 'Female' && character.ethnicityChosen == 'Hispanic' && character.hairColor == 'Black') {
-            panel.append("<img src='Assets/Images/femalehispanicblack.png'>");
+            panel.append("<img src='Images/femalehispanicblack.png'>");
         }
         else if (character.genderChosen = 'Female' && character.ethnicityChosen == 'Hispanic' && character.hairColor == 'Ginger') {
-            panel.append("<img src='Assets/Images/femalewhispanicginger.png'>");
+            panel.append("<img src='Images/femalewhispanicginger.png'>");
         }
         else if (character.genderChosen = 'Female' && character.ethnicityChosen == 'Asian' && character.hairColor == 'Blonde') {
-            panel.append("<img src='Assets/Images/femaleasianblonde.png'>");
+            panel.append("<img src='Images/femaleasianblonde.png'>");
         }
         else if (character.genderChosen = 'Female' && character.ethnicityChosen == 'Asian' && character.hairColor == 'Black') {
-            panel.append("<img src='Assets/Images/femaleasianblack.png'>");
+            panel.append("<img src='Images/femaleasianblack.png'>");
         }
         else if (character.genderChosen = 'Female' && character.ethnicityChosen == 'Asian' && character.hairColor == 'Ginger') {
-            panel.append("<img src='Assets/Images/femaleasianginger.png'>");
+            panel.append("<img src='Images/femaleasianginger.png'>");
         }
         else if (character.genderChosen = 'Female' && character.ethnicityChosen == 'Black' && character.hairColor == 'Blonde') {
-            panel.append("<img src='Assets/Images/femaleblackblonde.png'>");
+            panel.append("<img src='Images/femaleblackblonde.png'>");
         }
         else if (character.genderChosen = 'Female' && character.ethnicityChosen == 'Black' && character.hairColor == 'Black') {
-            panel.append("<img src='Assets/Images/femaleblackblack.png'>");
+            panel.append("<img src='Images/femaleblackblack.png'>");
         }
         else if (character.genderChosen = 'Female' && character.ethnicityChosen == 'Black' && character.hairColor == 'Ginger') {
-            panel.append("<img src='Assets/Images/femaleblackginger.png'>");
+            panel.append("<img src='Images/femaleblackginger.png'>");
         }
     },
 
@@ -225,6 +227,7 @@ var game = {
 
         $("#h1tag").html("Phase 2");
         $("#ptag").append("Highschool");
+        panel.html("<button id='next2'>Next</button>")
     }
 };
 
@@ -237,21 +240,37 @@ $(".startButton").on("click", function()    {
     game.phase1();
 });
 
-$(document).on("click","#next", function()   {
-    console.log("clicked");     
+$(document).on("click","#next1", function()   {
+    console.log("is character chosen ");     
     
     character.hairColor = $("input[name=question-"+0+"]:checked").val();
     character.ethnicityChosen = $("input[name=question-"+1+"]:checked").val();
     character.genderChosen = $("input[name=question-"+2+"]:checked").val();
     character.name = $("#name").val();
 
-    console.log("running phase 1.5");
-    game.phase1_5();
+    if (character.hairColor !== undefined && character.ethnicityChosen!==undefined && 
+    character.genderChosen!== undefined && character.name!==""){
+        isCharacterChosen = true;
+    }
+    else{
+        $("#h1tag").html("Silly you!");
+        $("#ptag").html("You need to fill in all the fields to create your character before you continue");
+    }
     
-    game.characterDisplay();
-    
-    
+    //if all traits have been filled out, go to next slide
+    if (isCharacterChosen){
+        game.phase1_5();
+        game.characterDisplay();
+    }
 });
+
+$(document).on("click","#next2",function(){
+    console.log("Phase2");
+
+
+
+
+})
 
 
 
