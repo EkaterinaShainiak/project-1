@@ -8,20 +8,24 @@ body    {
 img {
     width: 85%;
     height: 85%;
+    margin: 1%;
+    float: right;
+    clear: both;
 }
 
 input   {
     margin: 1%;
 }
 
-#bad  {
+#hs_bad  {
     padding: 1%;
-    margin: 1%;
+    margin: auto;
+    margin-left: 1%;
 }
 
-#good   {
+#hs_good   {
     padding: 1%;
-    margin: 1%;
+    margin: auto;
     margin-left: 16%;
 }
 
