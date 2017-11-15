@@ -1,0 +1,47 @@
+
+body    {
+    background-color: lightslategray;
+    /* font-family: 'Roboto', sans-serif; */
+    font-family: 'Indie Flower', cursive;
+}
+
+img {
+    width: 85%;
+    height: 85%;
+    margin: 1%;
+    float: right;
+    clear: both;
+}
+
+input   {
+    margin: 1%;
+}
+
+#hs_bad  {
+    padding: 1%;
+    margin: auto;
+    margin-left: 1%;
+}
+
+#hs_good   {
+    padding: 1%;
+    margin: auto;
+    margin-left: 16%;
+}
+
+.jumbotron  {
+    background-color: white;
+}
+
+.mainContainer  {
+    background-color: white;
+    padding: 5%;
+}
+
+.content    {
+    border: 1px solid gray;
+    background-color: black;
+    color: white;
+    margin: 1%;
+    padding: 1%;
+}
