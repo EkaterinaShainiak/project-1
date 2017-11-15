@@ -250,7 +250,7 @@ var game = {
 
     phase2: function () {
         $("#h1tag").html("Highschool");
-        $("#ptag").html("Test Day...");
+        $("#ptag").html("You have now entered High School. Congratulations. Every decision you make here, big or small, can impact the rest of your life. Will your dreams become reality or will you end up at McDonalds, making awkward small talk while taking your classmates' orders. And now it's test day.");
         panel.html("<button id='hs_good'>Open your bag to check everything is OK</button>")
         panel.append("<br>" + "<button id='hs_bad'>Run to Class before you become late</button>")
     },
