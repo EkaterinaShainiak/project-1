@@ -69,9 +69,6 @@ $.ajax({
 
     });
 
-
-
-
 //Game Logic 
 function roll100Die() {
     return Math.ceil(Math.random() * 100);
