@@ -1,4 +1,21 @@
+//global variables
 
+var isChoice1Available = false;
+var isChoice2Available = false;
+var isChoice3Available = false;
+var isCharacterChosen = false;
+
+var jobPosition;
+var hsDropOutPercent;
+var cDropOutPercent;
+var workForcePercent;
+
+
+//API calls (utilizes server.js)
+var webURL = "http://localhost:3000/data";
+var queryURL = "http://localhost:3000/mbkHigh";
+var queryURL2 = "http://localhost:3000/mbkCollege";
+var queryURL3 = "http://localhost:3000/mbkWork";
 var panel = $(".content");
 
 // Questions
@@ -29,19 +46,71 @@ var highschool = [{
 var hair;
 
 // Narration 
-var nar1_5 = "This is what we want to narrate to player";
 
 var hairColor;
 var ethnicityChosen;
 var genderChosen;
 var userName;
 
+//api calls
+
+$.ajax({
+    url: webURL,
+    method: "GET"
+})
+    .done(function (response) {
+        var results = JSON.parse(response);
+
+        jobPosition = results.data.response.employers[Math.floor(Math.random() * 10)].featuredReview.jobTitle;
+        console.log(jobPosition);
+
+    })
+
+$.ajax({
+    url: queryURL,
+    method: "GET"
+})
+    .done(function (response) {
+        var results = JSON.parse(response);
+
+        hsDropOutPercent = parseInt(results.data.resources[Math.floor(Math.random() * 20)].Percentage);
+        // storing the data from the AJAX request in the results variable
+        console.log(hsDropOutPercent);
+
+    });
+
+$.ajax({
+    url: queryURL2,
+    method: "GET"
+})
+    .done(function (response) {
+        var results = JSON.parse(response);
+
+        cDropOutPercent = parseInt(results.data.resources[Math.floor(Math.random() * 20)].Percentage);
+        // storing the data from the AJAX request in the results variable
+        console.log(cDropOutPercent);
+
+    });
+
+$.ajax({
+    url: queryURL3,
+    method: "GET"
+})
+    .done(function (response) {
+        var results = JSON.parse(response);
+        console.log(results);
+        workForce = parseInt(results.data.resources[Math.floor(Math.random() * 20)].Percentage);
+        // storing the data from the AJAX request in the results variable
+        console.log(workForce);
+
+    });
+
 var game = {
 
     phase1: function()   {
 
         $("button").remove();
-        $("#h1tag").html("Phase 1");
+        $("#h1tag").html("Creating Your Character!");
         $("#ptag").html("Select your character traits");
 
 
@@ -53,7 +122,7 @@ var game = {
             }
         }
         panel.append("<br>" + "Enter your name:" + "<br>" + "<input type='text' name='name' value='' id='name'>")
-        panel.append("<br>" + "<button id='next'>Next</button>");
+        panel.append("<br>" + "<button id='next1'>Next</button>");
 
         console.log("finished character creation");
 
@@ -62,97 +131,116 @@ var game = {
 
     phase1_5: function()  {
 
-        $("#h1tag").html("Phase 1.5");
-        $("#ptag").html("Narration");
+        $("#h1tag").html("This is "+character.name);
+        $("#ptag").html(character.name+" is beautiful");
 
         $(".content").html("");
 
-        panel.append(nar1_5);
+        panel.append(character.name+" is a very happy child. The only reason "+character.name+" looks like they are sad is because they just got a B+ on their test. But that's ok because "+character.name+" has a lot going for them!");
 
-        panel.append("<br>" + "<button id='next'>Next</button>");
+        panel.append("<br>" + "<button id='next1_7'>Next</button>");
+        
+    },
+
+    phase1_7: function() {
+        $("#h1tag").html("This is you");
+        $("#ptag").html("We're not kidding, this is your character");
+
+        panel.html("You must be thinking, 'That can't be me? I chose different traits in my character selection, there must be an error.' \nToo bad that you can't choose who you want to be because this game is a metaphor for life.");
+        panel.append()//insert mindblown giphy
+        panel.append("<br>" + "<button id='next1_71'>Next</button>");
+    },
+
+    phase1_71: function() {
+        $("#h1tag").html("You're sad");
+        $("#ptag").html("We know, but so is he, and he's dealing with it. Learn a thing or two from him.");
+
+        panel.html("As I was saying before I was rudely interupted, You are, just like the character, an extremely unhappy and ungrateful child. Life is quite unhappy for you. \nYour parents are divorced, you haven't eaten in a couple days, and your only friend Dogo, your imaginary dog, just died.");
+        panel.append("<br>" + "<button id='next2'>Next</button>");
     },
 
     characterDisplay: function() {
         console.log(character);
         if (character.genderChosen = 'Male' && character.ethnicityChosen == 'White' && character.hairColor == 'Blonde') {
-            $(".content").append("<img src='Assets/Images/malewhiteblonde.png'>");    
+            $(".content").append("<img src='Images/malewhiteblonde.png'>");    
             console.log("append image");
         }
         else if (character.genderChosen = 'Male' && character.ethnicityChosen == 'White' && character.hairColor == 'Black') {
-            panel.append("<img src='Assets/Images/malewhiteblack.png'>");
+            panel.append("<img src='Images/malewhiteblack.png'>");
         }
         else if (character.genderChosen = 'Male' && character.ethnicityChosen == 'White' && character.hairColor == 'Ginger') {
-            panel.append("<img src='Assets/Images/malewhiteginger.png'>");
+            panel.append("<img src='Images/malewhiteginger.png'>");
         }
         else if (character.genderChosen = 'Male' && character.ethnicityChosen == 'Hispanic' && character.hairColor == 'Blonde') {
-            panel.append("<img src='Assets/Images/malehispanicblonde.png'>");
+            panel.append("<img src='Images/malehispanicblonde.png'>");
         }
         else if (character.genderChosen = 'Male' && character.ethnicityChosen == 'Hispanic' && character.hairColor == 'Black') {
-            panel.append("<img src='Assets/Images/malehispanicblack.png'>");
+            panel.append("<img src='Images/malehispanicblack.png'>");
         }
         else if (character.genderChosen = 'Male' && character.ethnicityChosen == 'Hispanic' && character.hairColor == 'Ginger') {
-            panel.append("<img src='Assets/Images/malehispanicginger.png'>");
+            panel.append("<img src='Images/malehispanicginger.png'>");
         }
         else if (character.genderChosen = 'Male' && character.ethnicityChosen == 'Asian' && character.hairColor == 'Blonde') {
-            panel.append("<img src='Assets/Images/maleasianblonde.png'>");
+            panel.append("<img src='Images/maleasianblonde.png'>");
         }
         else if (character.genderChosen = 'Male' && character.ethnicityChosen == 'Asian' && character.hairColor == 'Black') {
-            panel.append("<img src='Assets/Images/maleasianblack.png'>");
+            panel.append("<img src='Images/maleasianblack.png'>");
         }
         else if (character.genderChosen = 'Male' && character.ethnicityChosen == 'Asian' && character.hairColor == 'Ginger') {
-            panel.append("<img src='Assets/Images/maleasianginger.png'>");
+            panel.append("<img src='Images/maleasianginger.png'>");
         }
         else if (character.genderChosen = 'Male' && character.ethnicityChosen == 'Black' && character.hairColor == 'Blonde') {
-            panel.append("<img src='Assets/Images/maleblackblonde.png'>");
+            panel.append("<img src='Images/maleblackblonde.png'>");
         }
         else if (character.genderChosen = 'Male' && character.ethnicityChosen == 'Black' && character.hairColor == 'Black') {
-            panel.append("<img src='Assets/Images/maleblackblack.png'>");
+            panel.append("<img src='Images/maleblackblack.png'>");
         }
         else if (character.genderChosen = 'Male' && character.ethnicityChosen == 'Black' && character.hairColor == 'Ginger') {
-            panel.append("<img src='Assets/Images/maleblackginger.png'>");
+            panel.append("<img src='Images/maleblackginger.png'>");
         }
         else if (character.genderChosen = 'Female' && character.ethnicityChosen == 'White' && character.hairColor == 'Blonde') {
-            panel.append("<img src='Assets/Images/femalewhiteblonde.png'>");
+            panel.append("<img src='Images/femalewhiteblonde.png'>");
         }
         else if (character.genderChosen = 'Female' && character.ethnicityChosen == 'White' && character.hairColor == 'Black') {
-            panel.append("<img src='Assets/Images/femalewhiteblack.png'>");
+            panel.append("<img src='Images/femalewhiteblack.png'>");
         }
         else if (character.genderChosen = 'Female' && character.ethnicityChosen == 'White' && character.hairColor == 'Ginger') {
-            panel.append("<img src='Assets/Images/femalewhiteginger.png'>");
+            panel.append("<img src='Images/femalewhiteginger.png'>");
         }    
         else if (character.genderChosen = 'Female' && character.ethnicityChosen == 'Hispanic' && character.hairColor == 'Blonde') {
-            panel.append("<img src='Assets/Images/femalehispanicblonde.png'>");
+            panel.append("<img src='Images/femalehispanicblonde.png'>");
         }
         else if (character.genderChosen = 'Female' && character.ethnicityChosen == 'Hispanic' && character.hairColor == 'Black') {
-            panel.append("<img src='Assets/Images/femalehispanicblack.png'>");
+            panel.append("<img src='Images/femalehispanicblack.png'>");
         }
         else if (character.genderChosen = 'Female' && character.ethnicityChosen == 'Hispanic' && character.hairColor == 'Ginger') {
-            panel.append("<img src='Assets/Images/femalewhispanicginger.png'>");
+            panel.append("<img src='Images/femalewhispanicginger.png'>");
         }
         else if (character.genderChosen = 'Female' && character.ethnicityChosen == 'Asian' && character.hairColor == 'Blonde') {
-            panel.append("<img src='Assets/Images/femaleasianblonde.png'>");
+            panel.append("<img src='Images/femaleasianblonde.png'>");
         }
         else if (character.genderChosen = 'Female' && character.ethnicityChosen == 'Asian' && character.hairColor == 'Black') {
-            panel.append("<img src='Assets/Images/femaleasianblack.png'>");
+            panel.append("<img src='Images/femaleasianblack.png'>");
         }
         else if (character.genderChosen = 'Female' && character.ethnicityChosen == 'Asian' && character.hairColor == 'Ginger') {
-            panel.append("<img src='Assets/Images/femaleasianginger.png'>");
+            panel.append("<img src='Images/femaleasianginger.png'>");
         }
         else if (character.genderChosen = 'Female' && character.ethnicityChosen == 'Black' && character.hairColor == 'Blonde') {
-            panel.append("<img src='Assets/Images/femaleblackblonde.png'>");
+            panel.append("<img src='Images/femaleblackblonde.png'>");
         }
         else if (character.genderChosen = 'Female' && character.ethnicityChosen == 'Black' && character.hairColor == 'Black') {
-            panel.append("<img src='Assets/Images/femaleblackblack.png'>");
+            panel.append("<img src='Images/femaleblackblack.png'>");
         }
         else if (character.genderChosen = 'Female' && character.ethnicityChosen == 'Black' && character.hairColor == 'Ginger') {
-            panel.append("<img src='Assets/Images/femaleblackginger.png'>");
+            panel.append("<img src='Images/femaleblackginger.png'>");
         }
     },
 
     phase2:  function() {
-
-        $("#h1tag").html("Phase 2");
-        $("#ptag").append("Highschool");
+        $("#h1tag").html("Highschool");
+        $("#ptag").html("Test Day...");
+        panel.html("<button id='good'>Open your bag to check everything is OK</button>")
+        panel.append("<button id='bad'>Run to Class before you become late</button>")
     }
 };
 
@@ -165,29 +253,132 @@ $(".startButton").on("click", function()    {
     game.phase1();
 });
 
-$(document).on("click","#next", function()   {
-    console.log("clicked");     
+$(document).on("click","#next1", function()   {
+    console.log("is character chosen ");     
     
     character.hairColor = $("input[name=question-"+0+"]:checked").val();
-    
-    console.log(character.hairColor);
-    
     character.ethnicityChosen = $("input[name=question-"+1+"]:checked").val();
-                  
-    console.log(character.ethnicityChosen);
-
     character.genderChosen = $("input[name=question-"+2+"]:checked").val();
-
-    console.log(character.genderChosen);
-
     character.name = $("#name").val();
 
-    console.log(character.name);
-
-    console.log("running phase 1.5");
-    game.phase1_5();
-    console.log("About to run character display");
-    game.characterDisplay();
+    if (character.hairColor !== undefined && character.ethnicityChosen!==undefined && 
+    character.genderChosen!== undefined && character.name!==""){
+        isCharacterChosen = true;
+    }
+    else{
+        $("#h1tag").html("Silly you!");
+        $("#ptag").html("You need to fill in all the fields to create your character before you continue");
+    }
     
-    
+    //if all traits have been filled out, go to next slide
+    if (isCharacterChosen){
+        game.phase1_5();
+        game.characterDisplay();
+    }
 });
+
+$(document).on("click","#next1_7",function(){
+    game.phase1_7();
+
+    character.hairColor = "Black";
+    character.ethnicityChosen = "Black";
+    character.genderChosen = "Male";
+    character.name = "You";
+
+    game.characterDisplay();
+})
+
+$(document).on("click","#next1_71", function(){
+    game.phase1_71();
+
+    game.characterDisplay();
+});
+
+$(document).on("click","#next2",function(){
+    game.phase2();
+})
+
+
+
+//Game Logic 
+function roll100Die() {
+    return Math.ceil(Math.random() * 100);
+}
+
+// function addTraitEffects(dice) {
+//     var final = dice;
+//     final += player.incomeStatus;
+//     final += player.ethnicityBonus;
+//     final += player.healthStatus;
+//     return final;
+// }
+
+function checkRollSuccess(minimum, roll) {
+    return roll >= minimim;
+}
+
+var statusBar = {
+    health:100,
+    profession: jobPosition,
+    location: "Irvine"
+}
+
+function createStatusBar(){
+    $("#stat-health").text("HP: "+statusBar.health);
+    $("#stat-profession").text("Profession: "+statusBar.profession);
+    $("#stat-location").text("Location: "+statusBar.location);
+}
+
+$(document).on("click", "#choice1", function () {
+    //insert text here//)
+    if (isChoice1Available) {
+        if ($(this).innerHTML === "yes"){
+            var roll = addTraitEffects(roll100Die());
+            if (checkRollSuccess(hsDropOutPercent, roll)) {
+                console.log("hurray you passed hs");
+            }
+            else{
+                console.log("you failed, just like the rest of us. one of us");
+            }
+        }
+        else{
+            console.log("just like the rest of us. one of us");
+        }
+    }
+})
+
+$(document).on("click", "#choice2", function () {
+    if (isChoice2Available) {
+        if ($(this).innerHTML === "yes"){
+            var roll = addTraitEffects(roll100Die());
+            if (checkRollSuccess(cDropOutPercent, roll)) {
+                console.log("hurray you passed college");
+            }
+            else{
+                console.log("you failed, just like the rest of us. one of us");
+            }
+        }
+        else{
+            console.log("just like the rest of us. one of us");
+        }
+    }
+
+})
+
+$(document).on("click", "#choice3", function () {
+    if (isChoice3Available) {
+        if ($(this).innerHTML === "yes"){
+            var roll = addTraitEffects(roll100Die());
+            if (checkRollSuccess(100-workForcePercent, roll)) {
+                console.log("You got a job");
+            }
+            else{
+                console.log("You don't have a job, just like the rest of us. One of us");
+            }
+        }
+        else{
+            console.log("Neet. One of us");
+        }
+    }
+
+})
