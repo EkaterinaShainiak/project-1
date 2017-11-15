@@ -83,7 +83,6 @@ $.ajax({
     url: queryURL2,
     method: "GET"
 })
-
     .done(function (response) {
         var results = JSON.parse(response);
 
@@ -93,12 +92,10 @@ $.ajax({
 
     });
 
-
 $.ajax({
     url: queryURL3,
     method: "GET"
 })
-
     .done(function (response) {
         var results = JSON.parse(response);
         console.log(results);
@@ -134,16 +131,32 @@ var game = {
 
     phase1_5: function()  {
 
-        $("#h1tag").html("Phase 1.5");
-        $("#ptag").html("Narration");
+        $("#h1tag").html("This is "+character.name);
+        $("#ptag").html(character.name+" is beautiful");
 
         $(".content").html("");
 
-        panel.append("This is "+character.name+". "+character.name+" is a very happy child. The only reason "+character.name+" looks like they are sad is because their dog just died. But that's besides the story.");
+        panel.append(character.name+" is a very happy child. The only reason "+character.name+" looks like they are sad is because they just got a B+ on their test. But that's ok because "+character.name+" has a lot going for them!");
 
-
-        panel.append("<br>" + "<button id='next2'>Next</button>");
+        panel.append("<br>" + "<button id='next1_7'>Next</button>");
         
+    },
+
+    phase1_7: function() {
+        $("#h1tag").html("This is you");
+        $("#ptag").html("We're not kidding, this is your character");
+
+        panel.html("You must be thinking, 'That can't be me? I chose different traits in my character selection, there must be an error.' \nToo bad that you can't choose who you want to be because this game is a metaphor for life.");
+        panel.append()//insert mindblown giphy
+        panel.append("<br>" + "<button id='next1_71'>Next</button>");
+    },
+
+    phase1_71: function() {
+        $("#h1tag").html("You're sad");
+        $("#ptag").html("We know, but so is he, and he's dealing with it. Learn a thing or two from him.");
+
+        panel.html("As I was saying before I was rudely interupted, You are, just like the character, an extremely unhappy and ungrateful child. Life is quite unhappy for you. \nYour parents are divorced, you haven't eaten in a couple days, and your only friend Dogo, your imaginary dog, just died.");
+        panel.append("<br>" + "<button id='next2'>Next</button>");
     },
 
     characterDisplay: function() {
@@ -224,10 +237,10 @@ var game = {
     },
 
     phase2:  function() {
-
-        $("#h1tag").html("Phase 2");
-        $("#ptag").append("Highschool");
-        panel.html("<button id='next2'>Next</button>")
+        $("#h1tag").html("Highschool");
+        $("#ptag").html("Test Day...");
+        panel.html("<button id='good'>Open your bag to check everything is OK</button>")
+        panel.append("<button id='bad'>Run to Class before you become late</button>")
     }
 };
 
@@ -264,12 +277,25 @@ $(document).on("click","#next1", function()   {
     }
 });
 
+$(document).on("click","#next1_7",function(){
+    game.phase1_7();
+
+    character.hairColor = "Black";
+    character.ethnicityChosen = "Black";
+    character.genderChosen = "Male";
+    character.name = "You";
+
+    game.characterDisplay();
+})
+
+$(document).on("click","#next1_71", function(){
+    game.phase1_71();
+
+    game.characterDisplay();
+});
+
 $(document).on("click","#next2",function(){
-    console.log("Phase2");
-
-
-
-
+    game.phase2();
 })
 
 
