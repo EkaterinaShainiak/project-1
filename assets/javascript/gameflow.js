@@ -251,7 +251,7 @@ var game = {
             panel.html("Unlike the other "+hsDropOutPercent+"% of losers, you scraped by and got through. However, you realize that you don't have enough money to go to college, so what do you do now?");
 
             panel.append("<br>" + "<button id='job_good'>Submit your resume and pray</button>");
-            panel.append("<br>" + "<button id='job_bad'>Let's be real, McDonalds is the place to be</button>");
+            panel.append("<br>" + "<button id='ending_bad'>Let's be real, McDonalds is the place to be</button>");
             
         }
         else{
@@ -270,11 +270,29 @@ var game = {
         panel.append("<br>" + "<button id='ending_bad'>Search for Hope</button>"); 
     },
 
+    phase3: function(){
+        var roll = roll100Die();
+        if (checkRollSuccess(100-workForcePercent, roll)) {
+            $("#h1tag").html("You struck gold");
+            $("#ptag").html("You can't believe your luck");
+
+            panel.html("In fact, no one quite understands how you got your job as a "+jobPosition+". The company must have had a shortage of good staff or something. But yeah. Wohoo. I guess you won the game. Hope you feel good about yourself. But let's be real, you didn't really win, because this game is a metaphor for life.");
+
+        }
+        else{
+            $("#h1tag").html("Drum roll please~~~");
+            $("#ptag").html("dududududududuuuuu");
+
+            panel.html("You didn't make it! You just weren't good enough. ")
+        }
+    },
+
     phaseEnding_bad: function(){
         $("#h1tag").html("I'm Lovin' It");
         $("#ptag").html("I mean, you don't have much else");
         panel.html("You've become the Sue Shef of McDonald's flippin' grill. You're not even sure if that's how you spell Sue Shef, but what would you know. Life is good enough. You didn't lose, because this game is a metaphor for life and there's nothing that says you win or lose.");
     } 
+
 };
 
 // Next button needs to dynamically move into next phase of game
@@ -345,7 +363,7 @@ $(document).on("click","#hs_bad",function(){
 $(document).on("click","#ending_bad",function(){
     game.phaseEnding_bad();
     game.characterDisplay();
-},
+});
 
 
 
@@ -363,7 +381,7 @@ function roll100Die() {
 // }
 
 function checkRollSuccess(minimum, roll) {
-    return roll >= minimim;
+    return roll >= minimum;
 }
 
 var statusBar = {
