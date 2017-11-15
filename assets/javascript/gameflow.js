@@ -310,6 +310,8 @@ var game = {
     },
 
     phase_stats: function () {
+        $("#h1tag").html("Some Stats about Highschool Drop Out Rates");
+        $("#ptag").html("Year vs Drop Out Percentage");
         panel.html("<canvas id='myChart' width='1600' height'900'></canvas>")
     
     
