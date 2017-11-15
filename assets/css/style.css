@@ -1,12 +1,28 @@
 
 body    {
     background-color: lightslategray;
-    font-family: 'Roboto', sans-serif;
+    /* font-family: 'Roboto', sans-serif; */
+    font-family: 'Indie Flower', cursive;
 }
 
 img {
     width: 85%;
     height: 85%;
+}
+
+input   {
+    margin: 1%;
+}
+
+#bad  {
+    padding: 1%;
+    margin: 1%;
+}
+
+#good   {
+    padding: 1%;
+    margin: 1%;
+    margin-left: 16%;
 }
 
 .jumbotron  {
