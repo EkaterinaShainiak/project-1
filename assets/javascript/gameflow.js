@@ -7,7 +7,7 @@ var characterQuestions = [{
     answers: ["Blonde", "Black", "Ginger"]
 },  {
     question: "Select your ethnicity:",
-    answers: ["White", "Not White", "Asian"]
+    answers: ["Black", "White", "Hispanic", "Asian"]
 },  {
     question: "Select your gender:",
     answers: ["Female", "Male", "Unknown"]
@@ -31,7 +31,7 @@ var hair;
 // Narration 
 var nar1_5 = "This is what we want to narrate to player";
 
-var hairChosen;
+var hairColor;
 var ethnicityChosen;
 var genderChosen;
 var userName;
@@ -55,47 +55,98 @@ var game = {
         panel.append("<br>" + "Enter your name:" + "<br>" + "<input type='text' name='name' value='' id='name'>")
         panel.append("<br>" + "<button id='next'>Next</button>");
 
+        console.log("finished character creation");
 
-        $("#next").on("click", function()   {
-            console.log("clicked");     
-            
-            hairChosen = $("input[name=question-"+0+"]:checked").val();
-            
-            console.log(hairChosen);
-            
-            ethnicityChosen = $("input[name=question-"+1+"]:checked").val();
-                          
-            console.log(ethnicityChosen);
-
-            genderChosen = $("input[name=question-"+2+"]:checked").val();
-
-            console.log(genderChosen);
-
-            userName = $("#name").val();
-
-            console.log(userName);
-            
-            character = {
-                hairColor: hairChosen,
-                ethnicityChosen: ethnicityChosen,
-                genderChosen: genderChosen,
-                name: userName,
-            };
-
-            console.log(character);
-
-            game.phase1_5();
-        });
     },
+
 
     phase1_5: function()  {
 
         $("#h1tag").html("Phase 1.5");
         $("#ptag").html("Narration");
 
-        panel.html(nar1_5);
+        $(".content").html("");
+
+        panel.append(nar1_5);
 
         panel.append("<br>" + "<button id='next'>Next</button>");
+    },
+
+    characterDisplay: function() {
+        console.log(character);
+        if (character.genderChosen = 'Male' && character.ethnicityChosen == 'White' && character.hairColor == 'Blonde') {
+            $(".content").append("<img src='Assets/Images/malewhiteblonde.png'>");    
+            console.log("append image");
+        }
+        else if (character.genderChosen = 'Male' && character.ethnicityChosen == 'White' && character.hairColor == 'Black') {
+            panel.append("<img src='Assets/Images/malewhiteblack.png'>");
+        }
+        else if (character.genderChosen = 'Male' && character.ethnicityChosen == 'White' && character.hairColor == 'Ginger') {
+            panel.append("<img src='Assets/Images/malewhiteginger.png'>");
+        }
+        else if (character.genderChosen = 'Male' && character.ethnicityChosen == 'Hispanic' && character.hairColor == 'Blonde') {
+            panel.append("<img src='Assets/Images/malehispanicblonde.png'>");
+        }
+        else if (character.genderChosen = 'Male' && character.ethnicityChosen == 'Hispanic' && character.hairColor == 'Black') {
+            panel.append("<img src='Assets/Images/malehispanicblack.png'>");
+        }
+        else if (character.genderChosen = 'Male' && character.ethnicityChosen == 'Hispanic' && character.hairColor == 'Ginger') {
+            panel.append("<img src='Assets/Images/malehispanicginger.png'>");
+        }
+        else if (character.genderChosen = 'Male' && character.ethnicityChosen == 'Asian' && character.hairColor == 'Blonde') {
+            panel.append("<img src='Assets/Images/maleasianblonde.png'>");
+        }
+        else if (character.genderChosen = 'Male' && character.ethnicityChosen == 'Asian' && character.hairColor == 'Black') {
+            panel.append("<img src='Assets/Images/maleasianblack.png'>");
+        }
+        else if (character.genderChosen = 'Male' && character.ethnicityChosen == 'Asian' && character.hairColor == 'Ginger') {
+            panel.append("<img src='Assets/Images/maleasianginger.png'>");
+        }
+        else if (character.genderChosen = 'Male' && character.ethnicityChosen == 'Black' && character.hairColor == 'Blonde') {
+            panel.append("<img src='Assets/Images/maleblackblonde.png'>");
+        }
+        else if (character.genderChosen = 'Male' && character.ethnicityChosen == 'Black' && character.hairColor == 'Black') {
+            panel.append("<img src='Assets/Images/maleblackblack.png'>");
+        }
+        else if (character.genderChosen = 'Male' && character.ethnicityChosen == 'Black' && character.hairColor == 'Ginger') {
+            panel.append("<img src='Assets/Images/maleblackginger.png'>");
+        }
+        else if (character.genderChosen = 'Female' && character.ethnicityChosen == 'White' && character.hairColor == 'Blonde') {
+            panel.append("<img src='Assets/Images/femalewhiteblonde.png'>");
+        }
+        else if (character.genderChosen = 'Female' && character.ethnicityChosen == 'White' && character.hairColor == 'Black') {
+            panel.append("<img src='Assets/Images/femalewhiteblack.png'>");
+        }
+        else if (character.genderChosen = 'Female' && character.ethnicityChosen == 'White' && character.hairColor == 'Ginger') {
+            panel.append("<img src='Assets/Images/femalewhiteginger.png'>");
+        }    
+        else if (character.genderChosen = 'Female' && character.ethnicityChosen == 'Hispanic' && character.hairColor == 'Blonde') {
+            panel.append("<img src='Assets/Images/femalehispanicblonde.png'>");
+        }
+        else if (character.genderChosen = 'Female' && character.ethnicityChosen == 'Hispanic' && character.hairColor == 'Black') {
+            panel.append("<img src='Assets/Images/femalehispanicblack.png'>");
+        }
+        else if (character.genderChosen = 'Female' && character.ethnicityChosen == 'Hispanic' && character.hairColor == 'Ginger') {
+            panel.append("<img src='Assets/Images/femalewhispanicginger.png'>");
+        }
+        else if (character.genderChosen = 'Female' && character.ethnicityChosen == 'Asian' && character.hairColor == 'Blonde') {
+            panel.append("<img src='Assets/Images/femaleasianblonde.png'>");
+        }
+        else if (character.genderChosen = 'Female' && character.ethnicityChosen == 'Asian' && character.hairColor == 'Black') {
+            panel.append("<img src='Assets/Images/femaleasianblack.png'>");
+        }
+        else if (character.genderChosen = 'Female' && character.ethnicityChosen == 'Asian' && character.hairColor == 'Ginger') {
+            panel.append("<img src='Assets/Images/femaleasianginger.png'>");
+        }
+        else if (character.genderChosen = 'Female' && character.ethnicityChosen == 'Black' && character.hairColor == 'Blonde') {
+            panel.append("<img src='Assets/Images/femaleblackblonde.png'>");
+        }
+        else if (character.genderChosen = 'Female' && character.ethnicityChosen == 'Black' && character.hairColor == 'Black') {
+            panel.append("<img src='Assets/Images/femaleblackblack.png'>");
+        }
+        else if (character.genderChosen = 'Female' && character.ethnicityChosen == 'Black' && character.hairColor == 'Ginger') {
+            panel.append("<img src='Assets/Images/femaleblackginger.png'>");
+        }
     },
 
     phase2:  function() {
@@ -110,6 +161,33 @@ var game = {
 
 // Click event(s)
 $(".startButton").on("click", function()    {
-    console.log("clicked");
+    console.log("start button clicked clicked");
     game.phase1();
+});
+
+$(document).on("click","#next", function()   {
+    console.log("clicked");     
+    
+    character.hairColor = $("input[name=question-"+0+"]:checked").val();
+    
+    console.log(character.hairColor);
+    
+    character.ethnicityChosen = $("input[name=question-"+1+"]:checked").val();
+                  
+    console.log(character.ethnicityChosen);
+
+    character.genderChosen = $("input[name=question-"+2+"]:checked").val();
+
+    console.log(character.genderChosen);
+
+    character.name = $("#name").val();
+
+    console.log(character.name);
+
+    console.log("running phase 1.5");
+    game.phase1_5();
+    console.log("About to run character display");
+    game.characterDisplay();
+    
+    
 });
