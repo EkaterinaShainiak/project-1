@@ -239,9 +239,42 @@ var game = {
     phase2:  function() {
         $("#h1tag").html("Highschool");
         $("#ptag").html("Test Day...");
-        panel.html("<button id='good'>Open your bag to check everything is OK</button>")
-        panel.append("<button id='bad'>Run to Class before you become late</button>")
-    }
+        panel.html("<button id='hs_good'>Open your bag to check everything is OK</button>")
+        panel.append("<button id='hs_bad'>Run to Class before you become late</button>")
+    },
+
+    phase2_good: function(){
+        var roll = roll100Die();
+        if (checkRollSuccess(hsDropOutPercent, roll)) {
+            $("#h1tag").html("You beat the odds");
+            $("#ptag").html("You graduated high school");
+            panel.html("Unlike the other "+hsDropOutPercent+"% of losers, you scraped by and got through. However, you realize that you don't have enough money to go to college, so what do you do now?");
+
+            panel.append("<br>" + "<button id='job_good'>Submit your resume and pray</button>");
+            panel.append("<br>" + "<button id='job_bad'>Let's be real, McDonalds is the place to be</button>");
+            
+        }
+        else{
+            $("#h1tag").html("You lived up to your expectations!");
+            $("#ptag").html("You flunked out of high school");
+            
+            panel.html("Life had gone by, like a blur. The last thing you remember is that you ran to class and failed that test. You tried and tried, but you just wasn't cut out for academics. Perhaps all this time was a waste. You spiral into depression, and feel as though there is nothing left for you.");
+            panel.append("<br>" + "<button id='ending_bad'>Search for Hope</button>");            
+        }
+    },
+
+    phase2_bad: function(){
+        $("#h1tag").html("You Dropped out of high school");
+        $("#ptag").html("Seriously, you're done");
+        panel.html("You last remember running to class, and realizing that you had forgotten your pencils back at home. You, with your only friend Dogo gone, didn't have anyone to turn to ask for a pencil. You failed the exam. You spiral into depression, and feel as though there is nothing left for you.");
+        panel.append("<br>" + "<button id='ending_bad'>Search for Hope</button>"); 
+    },
+
+    phaseEnding_bad: function(){
+        $("#h1tag").html("I'm Lovin' It");
+        $("#ptag").html("I mean, you don't have much else");
+        panel.html("You've become the Sue Shef of McDonald's flippin' grill. You're not even sure if that's how you spell Sue Shef, but what would you know. Life is good enough. You didn't lose, because this game is a metaphor for life and there's nothing that says you win or lose.");
+    } 
 };
 
 // Next button needs to dynamically move into next phase of game
@@ -296,7 +329,23 @@ $(document).on("click","#next1_71", function(){
 
 $(document).on("click","#next2",function(){
     game.phase2();
-})
+    game.characterDisplay();
+});
+
+$(document).on("click","#hs_good",function(){
+    game.phase2_good();
+    game.characterDisplay();
+});
+
+$(document).on("click","#hs_bad",function(){
+    game.phase2_bad();
+    game.characterDisplay();
+});
+
+$(document).on("click","#ending_bad",function(){
+    game.phaseEnding_bad();
+    game.characterDisplay();
+},
 
 
 
