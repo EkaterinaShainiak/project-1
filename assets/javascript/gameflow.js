@@ -111,7 +111,7 @@ $.ajax({
     .done(function (response) {
         var results = JSON.parse(response);
         console.log(results);
-        workForce = parseInt(results.data.resources[Math.floor(Math.random() * 20)].Percentage);
+        workForcePercent = parseInt(results.data.resources[Math.floor(Math.random() * 20)].Percentage);
         // storing the data from the AJAX request in the results variable
         console.log(results.data.resources);
 
@@ -284,6 +284,7 @@ var game = {
 
     phase3: function () {
         var roll = roll100Die();
+        console.log(workForcePercent);
         if (checkRollSuccess(100 - workForcePercent, roll)) {
             $("#h1tag").html("You struck gold");
             $("#ptag").html("You can't believe your luck");
@@ -296,9 +297,16 @@ var game = {
             $("#h1tag").html("Drum roll please~~~");
             $("#ptag").html("dududududududuuuuu");
 
-            panel.html("You didn't make it! You just weren't good enough. ");
+            panel.html("You didn't make it! You just weren't good enough. I mean, what did you expect? You barely made it out of high school, who wants someone like that?");
             panel.append("<br>" + "<button id='stats'>IRL Button</button>");
         }
+    },
+
+    phaseEnding_good: function(){
+        $("#h1tag").html("Hurray!");
+        $("#ptag").html("Life is just alright!");
+        panel.html("You are now the "+jobPosition+" of a reputable company. You look back at all the life choices that you had to make in order to reach this point, and you wonder, did I win? or was this the short end of the stick...I guess you'll never know because this is just a simple metaphor for li    fe.")
+        panel.append("<br>" + "<button id='stats'>IRL Button</button>");
     },
 
     phaseEnding_bad: function () {
@@ -402,6 +410,16 @@ $(document).on("click", "#hs_bad", function () {
 
 $(document).on("click", "#ending_bad", function () {
     game.phaseEnding_bad();
+    game.characterDisplay();
+});
+
+$(document).on("click","#job_good",function(){
+    game.phase3();
+    game.characterDisplay();
+})
+
+$(document).on("click","#ending_good",function(){
+    game.phaseEnding_good();
     game.characterDisplay();
 });
 
