@@ -64,7 +64,6 @@ $.ajax({
         var results = JSON.parse(response);
 
         jobPosition = results.data.response.employers[Math.floor(Math.random() * 10)].featuredReview.jobTitle;
-        console.log(jobPosition);
 
     })
 
@@ -87,7 +86,6 @@ $.ajax({
 
         }
 
-        console.log(results.data.resources);
 
     });
 
@@ -100,7 +98,6 @@ $.ajax({
 
         cDropOutPercent = parseInt(results.data.resources[Math.floor(Math.random() * 20)].Percentage);
         // storing the data from the AJAX request in the results variable
-        console.log(cDropOutPercent);
 
     });
 
@@ -110,10 +107,8 @@ $.ajax({
 })
     .done(function (response) {
         var results = JSON.parse(response);
-        console.log(results);
         workForcePercent = parseInt(results.data.resources[Math.floor(Math.random() * 20)].Percentage);
         // storing the data from the AJAX request in the results variable
-        console.log(results.data.resources);
 
     });
 
@@ -136,7 +131,6 @@ var game = {
         panel.append("<br>" + "Enter your name:" + "<br>" + "<input type='text' name='name' value='' id='name'>")
         panel.append("<br>" + "<button id='next1'>Next</button>");
 
-        console.log("finished character creation");
 
     },
 
@@ -172,10 +166,8 @@ var game = {
     },
 
     characterDisplay: function () {
-        console.log(character);
         if (character.genderChosen = 'Male' && character.ethnicityChosen == 'White' && character.hairColor == 'Blonde') {
             $(".content").append("<br>" + "<img src='Images/malewhiteblonde.png'>");
-            console.log("append image");
         }
         else if (character.genderChosen = 'Male' && character.ethnicityChosen == 'White' && character.hairColor == 'Black') {
             panel.append("<br>" + "<img src='Images/malewhiteblack.png'>");
@@ -284,7 +276,6 @@ var game = {
 
     phase3: function () {
         var roll = roll100Die();
-        console.log(workForcePercent);
         if (checkRollSuccess(100 - workForcePercent, roll)) {
             $("#h1tag").html("You struck gold");
             $("#ptag").html("You can't believe your luck");
@@ -348,12 +339,10 @@ var game = {
 
 // Click event(s)
 $(".startButton").on("click", function () {
-    console.log("start button clicked clicked");
     game.phase1();
 });
 
 $(document).on("click", "#next1", function () {
-    console.log("is character chosen ");
 
     character.hairColor = $("input[name=question-" + 0 + "]:checked").val();
     character.ethnicityChosen = $("input[name=question-" + 1 + "]:checked").val();
